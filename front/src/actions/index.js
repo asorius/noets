@@ -1,7 +1,9 @@
 import axios from 'axios';
-const baseUrl = 'http://localhost:3001/notes';
+const baseUrl = '/notes';
 
 const getAllNotes = async () => {
+  console.log('get all notes');
+  console.log(baseUrl);
   const req = await axios.get(baseUrl);
   const response = await req.data;
   return response;
