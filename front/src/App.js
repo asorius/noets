@@ -15,10 +15,17 @@ function App() {
     actions.addNote(content).then(data => setNotes([...notes, data]));
   };
   const updateImportance = id => {
-    actions.setImportance(id).then(data => setNotes([...data]));
+    actions
+      .setImportance(id)
+      .then(data => setNotes(notes.map(el => (el.id === data.id ? data : el))));
   };
   const filterImportance = () => {
     setFilter(!filter);
+  };
+  const ondelete = id => {
+    actions.deleteNote(id);
+    setNotes(notes.filter(note => note.id !== id));
+    console.log(id);
   };
   return (
     <div className="App">
@@ -30,6 +37,7 @@ function App() {
         notes={notes}
         update={updateImportance}
         filter={filter}
+        ondelete={ondelete}
       ></NotesList>
       <NewNote submit={submit}></NewNote>
     </div>

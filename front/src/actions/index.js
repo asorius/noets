@@ -2,8 +2,6 @@ import axios from 'axios';
 const baseUrl = '/notes';
 
 const getAllNotes = async () => {
-  console.log('get all notes');
-  console.log(baseUrl);
   const req = await axios.get(baseUrl);
   const response = await req.data;
   return response;
@@ -26,8 +24,18 @@ const setImportance = async (id, updatedNote) => {
     console.log(e);
   }
 };
+const deleteNote = async id => {
+  try {
+    const req = await axios.delete(baseUrl + '/' + id);
+    const data = await req.data;
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};
 export default {
   getAllNotes,
   addNote,
-  setImportance
+  setImportance,
+  deleteNote
 };
