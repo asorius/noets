@@ -2,5 +2,6 @@ POST http://localhost:3001/notes
 content-type: application/json
 
 {
-    "content":"va"
+    "content":"test with user 222222",
+    "userId":"5e500cd4d51ad403c842fde6"
 }

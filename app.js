@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 const notesRouter = require('./controllers/notes');
 const middleware = require('./utils/middleware');
 const config = require('./utils/config');
-
+const usersRouter = require('./controllers/users');
+const loginRouter = require('./controllers/login');
 console.log('connecting to ', config.MONGODB_URI);
 mongoose
   .connect(config.MONGODB_URI, {
@@ -21,7 +22,8 @@ app.use(express.static('build'));
 app.use(bodyParser.json());
 
 app.use('/notes', notesRouter);
-
+app.use('/users', usersRouter);
+app.use('/login', loginRouter);
 // handler of requests with unknown endpoint
 app.use(middleware.unknownEndpoint);
 // handler of requests with result to errors
